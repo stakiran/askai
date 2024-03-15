@@ -1,0 +1,7 @@
+set OPENAI_API_KEY=(YOUR-TOKEN)
+start "" 1.md
+start "" 2.md
+start "" 3.md
+start "" askailog.md
+title ai
+prompt $$ 

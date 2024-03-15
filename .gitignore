@@ -1,3 +1,12 @@
+# askai
+# -----
+[1-9].bat
+[1-9].md
+aiprepare.bat
+
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
