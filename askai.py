@@ -1,9 +1,11 @@
 import datetime
 import os
+import re
 
 import openai
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
+client = openai.OpenAI()
 
 # ========
 
@@ -25,16 +27,16 @@ def parse_arguments():
 # ========
 
 def ask(prompt):
-    response = openai.ChatCompletion.create(
-      #model='gpt-4-turbo-preview',
-      #model='gpt-4-32k',
-      model='gpt-4',
-      #model='gpt-3.5-turbo',
-      #model='gpt-3.5-turbo-16k',
+    response = client.chat.completions.create(
+      #model='o3-mini',
+      model='gpt-4o',
+      #model='gpt-4.1',
+      #model='gpt-4o-mini',
+      #model='gpt-4.1-mini',
       messages=[
             {'role': 'user', 'content': prompt},
       ],
-      request_timeout=130
+      timeout=130
     )
     return response
 
@@ -58,6 +60,12 @@ def file2str(filepath):
 def str2file(filepath, s):
     with open(filepath, encoding='utf8', mode='w') as f:
         f.write(s)
+
+LB = '\n'
+def string2lines(s):
+    return s.split(LB)
+def lines2string(lines):
+    return LB.join(lines)
 
 class Outputter:
     def __init__(self, prompt, response):
@@ -130,6 +138,10 @@ class Appender(Outputter):
 
     def out(self):
         str2file(self._filepath, self._content)
+
+def convert_scrapbox_tab_to_space(text):
+    newtext = re.sub(r'^\t', ' ', text, flags=re.MULTILINE)
+    return newtext
 
 # ========
 

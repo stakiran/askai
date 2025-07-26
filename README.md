@@ -1,10 +1,10 @@
 # askai
 Super comfortable ChatGPT client. Ask to ChatGPT with your text editor.
 
-![gif](https://github.com/stakiran/askai/assets/23325839/cfc2b899-68b8-4ad6-b989-bc8382759abb)
+![gif](https://github.com/user-attachments/assets/a3c8cb2e-a1c1-4fb9-8fbf-e06a245810d3)
 
 ## Requirement
-- Python 3.11.0+
+- Python 3.12.0+
 - Windows
     - Because use batch files.
     - If Linux or Mac User, create wrapper script yourself properly.
@@ -53,6 +53,31 @@ I think VSCode is better choice.
 Ans: Depends on the person.
 
 In my case, 3 slots were suitable.
+
+### Q: Example of on VSCode?
+Ans: Use .vscode/tasks.json on your folder.
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run askai",
+        "type": "shell",
+        "command": "/usr/local/bin/python3",
+        "args": [
+            "askai.py",
+            "--input",
+            "${fileBasenameNoExtension}.md"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+```
 
 ### Q: Example of prepare script on Mac?
 Ans: like this.
